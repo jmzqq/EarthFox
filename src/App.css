@@ -56,3 +56,27 @@ h4 {
   color: rgb(107, 106, 106);
   font-weight: 400;
 }
+
+ul {
+  padding: 0;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.ul__link {
+  list-style: none;
+  color: black;
+}
+
+.a__link {
+  color: #3b6eb3;
+  padding-bottom: 10px; 
+  text-decoration: none;
+}
+
+.a__link:hover {
+  text-decoration: underline;
+}
+

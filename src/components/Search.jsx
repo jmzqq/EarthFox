@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import EarthFox from "../assets/earthfox_logo.png";
 import "../App.css";
 
@@ -15,23 +16,20 @@ const Search = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (  query) {
+    if (!query) {
       return;
     }
 
+    setError("");
+    setLoading(true);
     try {
+      const URL = "http://localhost:4000/search";
       const res = await axios.get(URL, {
         params: {
-          q: query,
-          engine: "google",
-          google_domain: "google.com.br",
-          api_key: API_KEY,
-          h1: "pt-br",
-          gl: "br",
-          num: 10,
+          query: query,
         },
       });
-      const data = await res.json();
+      const data = res.data.organic_results || [];
       setResults(data);
     } catch (err) {
       console.error(err);
@@ -57,28 +55,32 @@ const Search = () => {
           />
         </form>
         <div>
-          <ul>
-            {error ? (
-              <h4>{error}</h4>
-            ) : loading ? (
-              <p>Carregando...</p>
-            ) : (
-              results.map((r, index) => {
+          {error ? (
+            <h4>{error}</h4>
+          ) : loading ? (
+            <h4>Carregando...</h4>
+          ) : (
+            <ul className="Resultado">
+              {results.map((r, index) => {
                 return (
-                  <li key={index.id}>
-                    <a href={r.link} target="_blank" rel="noopener noreferrer">
+                  <li className="ul__link" key={index}>
+                    <a
+                      className="a__link"
+                      href={r.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {r.title}
                     </a>
                     <p>{r.snippet}</p>
                   </li>
                 );
-              })
-            )}
-          </ul>
+              })}
+            </ul>
+          )}
         </div>
       </div>
     </div>
   );
 };
-
 export default Search;
