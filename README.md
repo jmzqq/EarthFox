@@ -18,7 +18,7 @@ Este projeto é um navegador simples desenvolvido com React que utiliza a API de
 ## Como executar o projeto
 1. **Clone o repositório:**
    ```bash
-   git clone git@github.com:jmzqq/EarthFox-.git
+   git clone git@github.com:jmzqq/EarthFox.git
 2. **Abra no Visual Studio**
 3. **Abra o console, pode ser o Bash ou PowerShell**
 4. **Digite "npm i", para instalar as dependências**
